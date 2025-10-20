@@ -1,9 +1,8 @@
 streamlit
-speechrecognition
-pyttsx3
-pywhatkit
+gTTS
 wikipedia
 pyjokes
 requests
-pyaudio
-gTTS
+SpeechRecognition
+streamlit-webrtc
+av
