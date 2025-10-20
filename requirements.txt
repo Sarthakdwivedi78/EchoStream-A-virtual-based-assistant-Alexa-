@@ -6,3 +6,4 @@ wikipedia
 pyjokes
 requests
 pyaudio
+gTTS
