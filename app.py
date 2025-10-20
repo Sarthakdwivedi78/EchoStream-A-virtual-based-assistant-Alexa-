@@ -138,7 +138,9 @@ class AudioProcessor(AudioProcessorBase):
     def process_audio(self):
         with lock:
             audio_buffer.seek(0)
-            audio_data = sr.AudioData(audio_buffer.read(), sample_rate=16000, sample_width=2)
+            # The sample rate and width must match what WebRTC provides. 
+            # 48000 is a common rate for WebRTC. Let's try adjusting if issues persist.
+            audio_data = sr.AudioData(audio_buffer.read(), sample_rate=48000, sample_width=2)
         try:
             command = recognizer.recognize_google(audio_data).lower()
             if 'alexa' in command:
@@ -174,19 +176,17 @@ webrtc_ctx = webrtc_streamer(
     mode=WebRtcMode.SENDONLY,
     audio_processor_factory=AudioProcessor,
     media_stream_constraints={"video": False, "audio": True},
-    send_audio=True,
     rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
 )
 
 if webrtc_ctx.state.playing and webrtc_ctx.audio_processor:
     st.info("Recording... Click Stop when you are done.")
-    webrtc_ctx.audio_processor.start()
-elif not webrtc_ctx.state.playing and webrtc_ctx.audio_processor:
+    # The start() method is now implicitly handled by the component's state
+elif not webrtc_ctx.state.playing and webrtc_ctx.audio_processor and webrtc_ctx.audio_processor._is_recording:
     command = webrtc_ctx.audio_processor.stop()
     if command:
         st.session_state.last_command = command
         process_command(command)
-        # We need to rerun to display the results and play the audio
         st.rerun()
 
 # Display area for command and response
@@ -206,4 +206,8 @@ if st.session_state.audio_to_play:
     st.components.v1.html(st.session_state.audio_to_play, height=0)
     # Clear the audio after playing to prevent re-playing on every interaction
     st.session_state.audio_to_play = ""
+
+# Set recording state when the stream starts
+if webrtc_ctx.state.playing and webrtc_ctx.audio_processor and not webrtc_ctx.audio_processor._is_recording:
+    webrtc_ctx.audio_processor.start()
 
