@@ -2,8 +2,9 @@ EchoStream 🗣️
 
 An interactive voice assistant that runs entirely in your web browser. Built with Streamlit, EchoStream allows you to get weather updates, search Wikipedia, play music on YouTube, and hear a joke, all with simple voice commands.
 
-<img width="1440" alt="EchoStream Screenshot" src="https://www.google.com/search?q=https://i.imgur.com/your-screenshot-url.png" />
-<!-- Replace with a screenshot of your app -->
+<img width="1153" height="798" alt="Screenshot 2025-10-20 211119" src="https://github.com/user-attachments/assets/09ae222f-e0d5-4931-a140-0009cca21154" />
+<img width="1502" height="736" alt="Screenshot 2025-10-20 204150" src="https://github.com/user-attachments/assets/99cef27b-d143-4a10-82f9-b05ec2e5ecad" />
+
 
 ✨ Key Features
 
