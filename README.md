@@ -6,6 +6,13 @@ An interactive voice assistant that runs entirely in your web browser. Built wit
 <img width="1502" height="736" alt="Screenshot 2025-10-20 204150" src="https://github.com/user-attachments/assets/99cef27b-d143-4a10-82f9-b05ec2e5ecad" />
 
 
+
+
+https://github.com/user-attachments/assets/a4700ff0-a08f-4b23-97dd-e2272ebbd5a6
+
+
+
+
 ✨ Key Features
 
 🗣️ Voice Command Recognition: Hands-free control to interact with the assistant directly in your browser.
